@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1d6a327706d742588408a9bbb625a160" Name="Diagram1">
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.AdressRegistry" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.CheckBonds" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Checks" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Chest" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.ChestProcess" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Company" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.EmployeeDetails" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Employees" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Missions" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.OrderDetail" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Orders" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Payrolls" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.RateList" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.RateTable" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Receipts" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="13.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.BillDetail" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Bills" Width="1.5" PointX="13.75" PointY="10.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Stock" Width="1.5" PointX="7.75" PointY="12.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.StockMovements" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.CurrentCards" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.CurrentCardDetails" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.Banks" Width="1.5" PointX="10.375" PointY="15.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.BankTransfers" Width="1.5" PointX="12.375" PointY="15.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.BankProcess" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="PreliminaryAccountingModel.AccountMovements" Width="1.5" PointX="15.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

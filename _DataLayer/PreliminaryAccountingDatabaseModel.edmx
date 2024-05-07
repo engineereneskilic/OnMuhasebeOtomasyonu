@@ -1,0 +1,1230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PreliminaryAccountingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountMovements">
+          <Key>
+            <PropertyRef Name="AccountMovementCode" />
+          </Key>
+          <Property Name="AccountMovementCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovementDate" Type="datetime" />
+          <Property Name="SequenceNo" Type="int" Nullable="false" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="Debt" Type="float" />
+          <Property Name="Credit" Type="float" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="CurrentCode" Type="int" />
+        </EntityType>
+        <EntityType Name="AdressRegistry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Groupp" Type="nvarchar" MaxLength="10" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="20" />
+          <Property Name="CompanyTitle" Type="nvarchar" MaxLength="18" />
+          <Property Name="PhoneNo" Type="int" />
+          <Property Name="Province" Type="nvarchar" MaxLength="20" />
+          <Property Name="District" Type="nvarchar" MaxLength="20" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="25" />
+          <Property Name="Email" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="BankProcess">
+          <Key>
+            <PropertyRef Name="BankProcessNo" />
+          </Key>
+          <Property Name="BankProcessNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankAccountNo" Type="int" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProcessDate" Type="date" />
+          <Property Name="CurrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="NetCredit" Type="float" />
+          <Property Name="NetDebt" Type="float" />
+          <Property Name="Expense" Type="float" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Banks">
+          <Key>
+            <PropertyRef Name="BankAccountNo" />
+          </Key>
+          <Property Name="BankAccountNo" Type="int" Nullable="false" />
+          <Property Name="IbanNo" Type="nvarchar" MaxLength="35" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="23" />
+          <Property Name="BankAccountName" Type="nvarchar" MaxLength="45" />
+          <Property Name="BankBranch" Type="nvarchar" MaxLength="30" />
+          <Property Name="BankAccountHolder" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankAccountHolderAdress" Type="text" />
+          <Property Name="BankAccountHolderPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankBalance" Type="float" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="BankTransfers">
+          <Key>
+            <PropertyRef Name="BankTransferCode" />
+          </Key>
+          <Property Name="BankTransferCode" Type="int" Nullable="false" />
+          <Property Name="BankAccountNo" Type="int" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankTransferDate" Type="date" />
+          <Property Name="BankDescript" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankTransferPrice" Type="float" />
+          <Property Name="BankExpencePrice" Type="float" />
+          <Property Name="BankExpencePercent" Type="int" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="BillDetailID" />
+          </Key>
+          <Property Name="BillDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillCode" Type="int" Nullable="false" />
+          <Property Name="LineType" Type="nvarchar" MaxLength="15" />
+          <Property Name="StockBarcode" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="StockCode" Type="int" />
+          <Property Name="Discript" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitType" Type="nvarchar" MaxLength="30" />
+          <Property Name="IncomingAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Yield" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UnitPrice" Type="float" />
+          <Property Name="LineTotalAmount" Type="float" />
+          <Property Name="KdvPercent" Type="float" />
+          <Property Name="DiscountPercent" Type="float" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="BillCode" />
+          </Key>
+          <Property Name="BillCode" Type="int" Nullable="false" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProcessDate" Type="date" />
+          <Property Name="ProcessTime" Type="time" Precision="7" />
+          <Property Name="CurrrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="NetDebt" Type="float" />
+          <Property Name="NetCredit" Type="float" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Expense" Type="float" />
+          <Property Name="Kdv" Type="float" />
+          <Property Name="KdvType" Type="nvarchar" MaxLength="30" />
+          <Property Name="Term" Type="nvarchar" MaxLength="20" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="CheckBonds">
+          <Key>
+            <PropertyRef Name="CheckNo" />
+          </Key>
+          <Property Name="CheckNo" Type="int" Nullable="false" />
+          <Property Name="Statuss" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="CurrentDate" Type="nvarchar" MaxLength="45" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="TransferredCurrentName" Type="nvarchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="CheckNo" />
+          </Key>
+          <Property Name="CheckNo" Type="int" Nullable="false" />
+          <Property Name="IssuedDate" Type="datetime" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="DebtorCurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="NetDebt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="TransferredCurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="Statuss" Type="nvarchar" MaxLength="20" />
+          <Property Name="Confirmation" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Chest">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="int" Nullable="false" />
+          <Property Name="ChestCode" Type="int" />
+          <Property Name="ChestName" Type="nvarchar" MaxLength="25" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="Incoming" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Outgoing" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Balance" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ChestProcess">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="int" Nullable="false" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="Datee" Type="datetime" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="BalanceDebt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BalanceCredit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CompanyTitle" Type="nvarchar" MaxLength="25" />
+          <Property Name="TaxOffice" Type="nvarchar" MaxLength="20" />
+          <Property Name="TaxNo" Type="int" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="45" />
+          <Property Name="PhoneNo1" Type="char" MaxLength="11" />
+          <Property Name="PhoneNo2" Type="char" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="CurrentCardDetails">
+          <Key>
+            <PropertyRef Name="CurrentCode" />
+          </Key>
+          <Property Name="CurrentCode" Type="int" Nullable="false" />
+          <Property Name="FirstInformation" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondInformation" Type="nchar" MaxLength="10" />
+          <Property Name="FirstPhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="SecondPhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="FaxNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="GsmNo" Type="nvarchar" MaxLength="30" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="District" Type="nvarchar" MaxLength="30" />
+          <Property Name="Notes" Type="text" />
+        </EntityType>
+        <EntityType Name="CurrentCards">
+          <Key>
+            <PropertyRef Name="CurrentCode" />
+          </Key>
+          <Property Name="CurrentType" Type="nvarchar" MaxLength="35" />
+          <Property Name="CurrentCode" Type="int" Nullable="false" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="BalanceDebt" Type="float" />
+          <Property Name="BalanceCredit" Type="float" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="DetailsID" />
+          </Key>
+          <Property Name="DetailsID" Type="int" Nullable="false" />
+          <Property Name="TCIdentificationNumber" Type="int" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmployeeSurname" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmployeeAge" Type="int" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="45" />
+          <Property Name="Department" Type="nvarchar" MaxLength="20" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmployeeSurname" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmployeeType" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PW" Type="nvarchar" MaxLength="40" />
+          <Property Name="CompanyID" Type="int" />
+        </EntityType>
+        <EntityType Name="Missions">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="int" Nullable="false" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="Timer" Type="time" Precision="7" />
+          <Property Name="RememberDate" Type="datetime" />
+          <Property Name="RememberTimer" Type="time" Precision="7" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderCode" />
+          </Key>
+          <Property Name="Statuss" Type="nvarchar" MaxLength="20" />
+          <Property Name="OrderCode" Type="int" Nullable="false" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ChargedAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="ReadyAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="PendingAmount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderNo" />
+          </Key>
+          <Property Name="OrderNo" Type="int" Nullable="false" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="CurrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="NetDebt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Payrolls">
+          <Key>
+            <PropertyRef Name="SequenceNo" />
+          </Key>
+          <Property Name="SequenceNo" Type="int" Nullable="false" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="CurrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RateList">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="9" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="10" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RateTable">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="9" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="10" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+          <Property Name="FreeMarket" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CentralBank" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Receipts">
+          <Key>
+            <PropertyRef Name="ReceiptID" />
+          </Key>
+          <Property Name="ReceiptID" Type="int" Nullable="false" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="NetDebt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="Descript" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockCode" />
+          </Key>
+          <Property Name="StockCode" Type="int" Nullable="false" />
+          <Property Name="StockBarcode" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="StockName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockComment" Type="nvarchar" MaxLength="150" />
+          <Property Name="StockType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockKDV" Type="float" />
+          <Property Name="StockMainUnitType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockSecondUnitType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockThirdUnitType" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockMainUnit" Type="int" />
+          <Property Name="StockSecondUnit" Type="int" />
+          <Property Name="StockThirdUnit" Type="int" />
+          <Property Name="StockKDVSalesStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockKDVBuyingStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockMainUnitSalesPrice" Type="float" />
+          <Property Name="StockSecondUnitSalesPrice" Type="float" />
+          <Property Name="StockThirdUnitSalesPrice" Type="float" />
+          <Property Name="StockMainUnitBuyingPrice" Type="float" />
+          <Property Name="StockSecondUnitBuyingPrice" Type="float" />
+          <Property Name="StockThirdUnitBuyingPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="StockMovements">
+          <Key>
+            <PropertyRef Name="FreightbillNo" />
+          </Key>
+          <Property Name="ProcessDate" Type="date" />
+          <Property Name="ProcessType" Type="nvarchar" MaxLength="15" />
+          <Property Name="FreightbillNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentCode" Type="int" />
+          <Property Name="CurrentName" Type="nvarchar" MaxLength="45" />
+          <Property Name="StockCode" Type="int" />
+          <Property Name="IncomingAmount" Type="int" />
+          <Property Name="Yield" Type="int" />
+          <Property Name="UnitPrice" Type="float" />
+          <Property Name="TotalAmount" Type="float" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="BillCode" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="PreliminaryAccountingModelStoreContainer">
+          <EntitySet Name="AccountMovements" EntityType="Self.AccountMovements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdressRegistry" EntityType="Self.AdressRegistry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankProcess" EntityType="Self.BankProcess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banks" EntityType="Self.Banks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankTransfers" EntityType="Self.BankTransfers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillDetail" EntityType="Self.BillDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckBonds" EntityType="Self.CheckBonds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chest" EntityType="Self.Chest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChestProcess" EntityType="Self.ChestProcess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentCardDetails" EntityType="Self.CurrentCardDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurrentCards" EntityType="Self.CurrentCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Missions" EntityType="Self.Missions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payrolls" EntityType="Self.Payrolls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateList" EntityType="Self.RateList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RateTable" EntityType="Self.RateTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMovements" EntityType="Self.StockMovements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PreliminaryAccountingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdressRegistry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Groupp" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTitle" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="Int32" />
+          <Property Name="Province" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CheckBonds">
+          <Key>
+            <PropertyRef Name="CheckNo" />
+          </Key>
+          <Property Name="CheckNo" Type="Int32" Nullable="false" />
+          <Property Name="Statuss" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentDate" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TransferredCurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="CheckNo" />
+          </Key>
+          <Property Name="CheckNo" Type="Int32" Nullable="false" />
+          <Property Name="IssuedDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="DebtorCurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NetDebt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TransferredCurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Statuss" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Confirmation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Chest">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="Int32" Nullable="false" />
+          <Property Name="ChestCode" Type="Int32" />
+          <Property Name="ChestName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Incoming" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Outgoing" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChestProcess">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Datee" Type="DateTime" Precision="3" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="BalanceDebt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BalanceCredit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TaxOffice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNo" Type="Int32" />
+          <Property Name="Adress" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo1" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="PhoneNo2" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="DetailsID" />
+          </Key>
+          <Property Name="DetailsID" Type="Int32" Nullable="false" />
+          <Property Name="TCIdentificationNumber" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeSurname" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeAge" Type="Int32" />
+          <Property Name="Adress" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeSurname" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PW" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Missions">
+          <Key>
+            <PropertyRef Name="RankNo" />
+          </Key>
+          <Property Name="RankNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="Timer" Type="Time" Precision="7" />
+          <Property Name="RememberDate" Type="DateTime" Precision="3" />
+          <Property Name="RememberTimer" Type="Time" Precision="7" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderCode" />
+          </Key>
+          <Property Name="Statuss" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OrderCode" Type="Int32" Nullable="false" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChargedAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ReadyAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PendingAmount" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderNo" />
+          </Key>
+          <Property Name="OrderNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NetDebt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payrolls">
+          <Key>
+            <PropertyRef Name="SequenceNo" />
+          </Key>
+          <Property Name="SequenceNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BankName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RateList">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RateTable">
+          <Key>
+            <PropertyRef Name="RateID" />
+          </Key>
+          <Property Name="RateID" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FreeMarket" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CentralBank" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Receipts">
+          <Key>
+            <PropertyRef Name="ReceiptID" />
+          </Key>
+          <Property Name="ReceiptID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NetDebt" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetCredit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PreliminaryAccountingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdressRegistry" EntityType="Self.AdressRegistry" />
+          <EntitySet Name="CheckBonds" EntityType="Self.CheckBonds" />
+          <EntitySet Name="Checks" EntityType="Self.Checks" />
+          <EntitySet Name="Chest" EntityType="Self.Chest" />
+          <EntitySet Name="ChestProcess" EntityType="Self.ChestProcess" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Missions" EntityType="Self.Missions" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Payrolls" EntityType="Self.Payrolls" />
+          <EntitySet Name="RateList" EntityType="Self.RateList" />
+          <EntitySet Name="RateTable" EntityType="Self.RateTable" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipts" />
+          <EntitySet Name="sysdiagrams" EntityType="PreliminaryAccountingModel.sysdiagrams" />
+          <EntitySet Name="BillDetail" EntityType="PreliminaryAccountingModel.BillDetail" />
+          <EntitySet Name="Bills" EntityType="PreliminaryAccountingModel.Bills" />
+          <EntitySet Name="Stock" EntityType="PreliminaryAccountingModel.Stock" />
+          <EntitySet Name="StockMovements" EntityType="PreliminaryAccountingModel.StockMovements" />
+          <EntitySet Name="CurrentCards" EntityType="PreliminaryAccountingModel.CurrentCards" />
+          <EntitySet Name="CurrentCardDetails" EntityType="PreliminaryAccountingModel.CurrentCardDetails" />
+          <EntitySet Name="Banks" EntityType="PreliminaryAccountingModel.Banks" />
+          <EntitySet Name="BankTransfers" EntityType="PreliminaryAccountingModel.BankTransfers" />
+          <EntitySet Name="BankProcess" EntityType="PreliminaryAccountingModel.BankProcess" />
+          <EntitySet Name="AccountMovements" EntityType="PreliminaryAccountingModel.AccountMovements" />
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BillDetail">
+          <Key>
+            <PropertyRef Name="BillDetailID" />
+          </Key>
+          <Property Name="BillDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillCode" Type="Int32" Nullable="false" />
+          <Property Name="LineType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="StockBarcode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StockCode" Type="Int32" />
+          <Property Name="Discript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IncomingAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Yield" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UnitPrice" Type="Double" />
+          <Property Name="LineTotalAmount" Type="Double" />
+          <Property Name="KdvPercent" Type="Double" />
+          <Property Name="DiscountPercent" Type="Double" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="BillCode" />
+          </Key>
+          <Property Name="BillCode" Type="Int32" Nullable="false" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="0" />
+          <Property Name="ProcessTime" Type="Time" Precision="7" />
+          <Property Name="CurrrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NetDebt" Type="Double" />
+          <Property Name="NetCredit" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Expense" Type="Double" />
+          <Property Name="Kdv" Type="Double" />
+          <Property Name="KdvType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Term" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockCode" />
+          </Key>
+          <Property Name="StockCode" Type="Int32" Nullable="false" />
+          <Property Name="StockBarcode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StockName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockComment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="StockType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockKDV" Type="Double" />
+          <Property Name="StockMainUnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockSecondUnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockThirdUnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockMainUnit" Type="Int32" />
+          <Property Name="StockSecondUnit" Type="Int32" />
+          <Property Name="StockThirdUnit" Type="Int32" />
+          <Property Name="StockKDVSalesStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockKDVBuyingStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockMainUnitSalesPrice" Type="Double" />
+          <Property Name="StockSecondUnitSalesPrice" Type="Double" />
+          <Property Name="StockThirdUnitSalesPrice" Type="Double" />
+          <Property Name="StockMainUnitBuyingPrice" Type="Double" />
+          <Property Name="StockSecondUnitBuyingPrice" Type="Double" />
+          <Property Name="StockThirdUnitBuyingPrice" Type="Double" />
+        </EntityType>
+        <EntityType Name="StockMovements">
+          <Key>
+            <PropertyRef Name="FreightbillNo" />
+          </Key>
+          <Property Name="ProcessDate" Type="DateTime" Precision="0" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FreightbillNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="StockCode" Type="Int32" />
+          <Property Name="IncomingAmount" Type="Int32" />
+          <Property Name="Yield" Type="Int32" />
+          <Property Name="UnitPrice" Type="Double" />
+          <Property Name="TotalAmount" Type="Double" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="BillCode" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CurrentCards">
+          <Key>
+            <PropertyRef Name="CurrentCode" />
+          </Key>
+          <Property Name="CurrentType" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentCode" Type="Int32" Nullable="false" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="BalanceDebt" Type="Double" />
+          <Property Name="BalanceCredit" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CurrentCardDetails">
+          <Key>
+            <PropertyRef Name="CurrentCode" />
+          </Key>
+          <Property Name="CurrentCode" Type="Int32" Nullable="false" />
+          <Property Name="FirstInformation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondInformation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FirstPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SecondPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GsmNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Banks">
+          <Key>
+            <PropertyRef Name="BankAccountNo" />
+          </Key>
+          <Property Name="BankAccountNo" Type="Int32" Nullable="false" />
+          <Property Name="IbanNo" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="23" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccountName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccountHolder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankAccountHolderAdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BankAccountHolderPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankBalance" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BankTransfers">
+          <Key>
+            <PropertyRef Name="BankTransferCode" />
+          </Key>
+          <Property Name="BankTransferCode" Type="Int32" Nullable="false" />
+          <Property Name="BankAccountNo" Type="Int32" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankTransferDate" Type="DateTime" Precision="0" />
+          <Property Name="BankDescript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankTransferPrice" Type="Double" />
+          <Property Name="BankExpencePrice" Type="Double" />
+          <Property Name="BankExpencePercent" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BankProcess">
+          <Key>
+            <PropertyRef Name="BankProcessNo" />
+          </Key>
+          <Property Name="BankProcessNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankAccountNo" Type="Int32" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="0" />
+          <Property Name="CurrentCode" Type="Int32" />
+          <Property Name="CurrentName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NetCredit" Type="Double" />
+          <Property Name="NetDebt" Type="Double" />
+          <Property Name="Expense" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AccountMovements">
+          <Key>
+            <PropertyRef Name="AccountMovementCode" />
+          </Key>
+          <Property Name="AccountMovementCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovementDate" Type="DateTime" Precision="3" />
+          <Property Name="SequenceNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Descript" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Debt" Type="Double" />
+          <Property Name="Credit" Type="Double" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentCode" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PreliminaryAccountingModelStoreContainer" CdmEntityContainer="PreliminaryAccountingEntities">
+          <EntitySetMapping Name="AdressRegistry">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.AdressRegistry">
+              <MappingFragment StoreEntitySet="AdressRegistry">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Groupp" ColumnName="Groupp" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="CompanyTitle" ColumnName="CompanyTitle" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckBonds">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.CheckBonds">
+              <MappingFragment StoreEntitySet="CheckBonds">
+                <ScalarProperty Name="CheckNo" ColumnName="CheckNo" />
+                <ScalarProperty Name="Statuss" ColumnName="Statuss" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="TransferredCurrentName" ColumnName="TransferredCurrentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checks">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Checks">
+              <MappingFragment StoreEntitySet="Checks">
+                <ScalarProperty Name="CheckNo" ColumnName="CheckNo" />
+                <ScalarProperty Name="IssuedDate" ColumnName="IssuedDate" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="DebtorCurrentName" ColumnName="DebtorCurrentName" />
+                <ScalarProperty Name="NetDebt" ColumnName="NetDebt" />
+                <ScalarProperty Name="NetCredit" ColumnName="NetCredit" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="TransferredCurrentName" ColumnName="TransferredCurrentName" />
+                <ScalarProperty Name="Statuss" ColumnName="Statuss" />
+                <ScalarProperty Name="Confirmation" ColumnName="Confirmation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chest">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Chest">
+              <MappingFragment StoreEntitySet="Chest">
+                <ScalarProperty Name="RankNo" ColumnName="RankNo" />
+                <ScalarProperty Name="ChestCode" ColumnName="ChestCode" />
+                <ScalarProperty Name="ChestName" ColumnName="ChestName" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="Incoming" ColumnName="Incoming" />
+                <ScalarProperty Name="Outgoing" ColumnName="Outgoing" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChestProcess">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.ChestProcess">
+              <MappingFragment StoreEntitySet="ChestProcess">
+                <ScalarProperty Name="RankNo" ColumnName="RankNo" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="Datee" ColumnName="Datee" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="BalanceDebt" ColumnName="BalanceDebt" />
+                <ScalarProperty Name="BalanceCredit" ColumnName="BalanceCredit" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyTitle" ColumnName="CompanyTitle" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="TaxNo" ColumnName="TaxNo" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="PhoneNo1" ColumnName="PhoneNo1" />
+                <ScalarProperty Name="PhoneNo2" ColumnName="PhoneNo2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDetails">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.EmployeeDetails">
+              <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="DetailsID" ColumnName="DetailsID" />
+                <ScalarProperty Name="TCIdentificationNumber" ColumnName="TCIdentificationNumber" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+                <ScalarProperty Name="EmployeeAge" ColumnName="EmployeeAge" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PW" ColumnName="PW" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Missions">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Missions">
+              <MappingFragment StoreEntitySet="Missions">
+                <ScalarProperty Name="RankNo" ColumnName="RankNo" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="Timer" ColumnName="Timer" />
+                <ScalarProperty Name="RememberDate" ColumnName="RememberDate" />
+                <ScalarProperty Name="RememberTimer" ColumnName="RememberTimer" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetail">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Statuss" ColumnName="Statuss" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ChargedAmount" ColumnName="ChargedAmount" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="ReadyAmount" ColumnName="ReadyAmount" />
+                <ScalarProperty Name="PendingAmount" ColumnName="PendingAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="NetDebt" ColumnName="NetDebt" />
+                <ScalarProperty Name="NetCredit" ColumnName="NetCredit" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payrolls">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Payrolls">
+              <MappingFragment StoreEntitySet="Payrolls">
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateList">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.RateList">
+              <MappingFragment StoreEntitySet="RateList">
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RateTable">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.RateTable">
+              <MappingFragment StoreEntitySet="RateTable">
+                <ScalarProperty Name="RateID" ColumnName="RateID" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="FreeMarket" ColumnName="FreeMarket" />
+                <ScalarProperty Name="CentralBank" ColumnName="CentralBank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipts">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Receipts">
+              <MappingFragment StoreEntitySet="Receipts">
+                <ScalarProperty Name="ReceiptID" ColumnName="ReceiptID" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="NetDebt" ColumnName="NetDebt" />
+                <ScalarProperty Name="NetCredit" ColumnName="NetCredit" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillDetail">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.BillDetail">
+              <MappingFragment StoreEntitySet="BillDetail">
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="KdvPercent" ColumnName="KdvPercent" />
+                <ScalarProperty Name="LineTotalAmount" ColumnName="LineTotalAmount" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Yield" ColumnName="Yield" />
+                <ScalarProperty Name="IncomingAmount" ColumnName="IncomingAmount" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="Discript" ColumnName="Discript" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockBarcode" ColumnName="StockBarcode" />
+                <ScalarProperty Name="LineType" ColumnName="LineType" />
+                <ScalarProperty Name="BillCode" ColumnName="BillCode" />
+                <ScalarProperty Name="BillDetailID" ColumnName="BillDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Bills">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="KdvType" ColumnName="KdvType" />
+                <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="NetCredit" ColumnName="NetCredit" />
+                <ScalarProperty Name="NetDebt" ColumnName="NetDebt" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrrentCode" ColumnName="CurrrentCode" />
+                <ScalarProperty Name="ProcessTime" ColumnName="ProcessTime" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="BillCode" ColumnName="BillCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="StockThirdUnitBuyingPrice" ColumnName="StockThirdUnitBuyingPrice" />
+                <ScalarProperty Name="StockSecondUnitBuyingPrice" ColumnName="StockSecondUnitBuyingPrice" />
+                <ScalarProperty Name="StockMainUnitBuyingPrice" ColumnName="StockMainUnitBuyingPrice" />
+                <ScalarProperty Name="StockThirdUnitSalesPrice" ColumnName="StockThirdUnitSalesPrice" />
+                <ScalarProperty Name="StockSecondUnitSalesPrice" ColumnName="StockSecondUnitSalesPrice" />
+                <ScalarProperty Name="StockMainUnitSalesPrice" ColumnName="StockMainUnitSalesPrice" />
+                <ScalarProperty Name="StockKDVBuyingStatus" ColumnName="StockKDVBuyingStatus" />
+                <ScalarProperty Name="StockKDVSalesStatus" ColumnName="StockKDVSalesStatus" />
+                <ScalarProperty Name="StockThirdUnit" ColumnName="StockThirdUnit" />
+                <ScalarProperty Name="StockSecondUnit" ColumnName="StockSecondUnit" />
+                <ScalarProperty Name="StockMainUnit" ColumnName="StockMainUnit" />
+                <ScalarProperty Name="StockThirdUnitType" ColumnName="StockThirdUnitType" />
+                <ScalarProperty Name="StockSecondUnitType" ColumnName="StockSecondUnitType" />
+                <ScalarProperty Name="StockMainUnitType" ColumnName="StockMainUnitType" />
+                <ScalarProperty Name="StockKDV" ColumnName="StockKDV" />
+                <ScalarProperty Name="StockType" ColumnName="StockType" />
+                <ScalarProperty Name="StockComment" ColumnName="StockComment" />
+                <ScalarProperty Name="StockName" ColumnName="StockName" />
+                <ScalarProperty Name="StockBarcode" ColumnName="StockBarcode" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMovements">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.StockMovements">
+              <MappingFragment StoreEntitySet="StockMovements">
+                <ScalarProperty Name="BillCode" ColumnName="BillCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Yield" ColumnName="Yield" />
+                <ScalarProperty Name="IncomingAmount" ColumnName="IncomingAmount" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="FreightbillNo" ColumnName="FreightbillNo" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentCards">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.CurrentCards">
+              <MappingFragment StoreEntitySet="CurrentCards">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="BalanceCredit" ColumnName="BalanceCredit" />
+                <ScalarProperty Name="BalanceDebt" ColumnName="BalanceDebt" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="CurrentType" ColumnName="CurrentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentCardDetails">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.CurrentCardDetails">
+              <MappingFragment StoreEntitySet="CurrentCardDetails">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="GsmNo" ColumnName="GsmNo" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="FirstPhone" ColumnName="FirstPhone" />
+                <ScalarProperty Name="SecondInformation" ColumnName="SecondInformation" />
+                <ScalarProperty Name="FirstInformation" ColumnName="FirstInformation" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.Banks">
+              <MappingFragment StoreEntitySet="Banks">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="BankBalance" ColumnName="BankBalance" />
+                <ScalarProperty Name="BankAccountHolderPhone" ColumnName="BankAccountHolderPhone" />
+                <ScalarProperty Name="BankAccountHolderAdress" ColumnName="BankAccountHolderAdress" />
+                <ScalarProperty Name="BankAccountHolder" ColumnName="BankAccountHolder" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IbanNo" ColumnName="IbanNo" />
+                <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankTransfers">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.BankTransfers">
+              <MappingFragment StoreEntitySet="BankTransfers">
+                <ScalarProperty Name="BankExpencePercent" ColumnName="BankExpencePercent" />
+                <ScalarProperty Name="BankExpencePrice" ColumnName="BankExpencePrice" />
+                <ScalarProperty Name="BankTransferPrice" ColumnName="BankTransferPrice" />
+                <ScalarProperty Name="BankDescript" ColumnName="BankDescript" />
+                <ScalarProperty Name="BankTransferDate" ColumnName="BankTransferDate" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+                <ScalarProperty Name="BankTransferCode" ColumnName="BankTransferCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankProcess">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.BankProcess">
+              <MappingFragment StoreEntitySet="BankProcess">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="NetDebt" ColumnName="NetDebt" />
+                <ScalarProperty Name="NetCredit" ColumnName="NetCredit" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="CurrentName" ColumnName="CurrentName" />
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="BankAccountNo" ColumnName="BankAccountNo" />
+                <ScalarProperty Name="BankProcessNo" ColumnName="BankProcessNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountMovements">
+            <EntityTypeMapping TypeName="PreliminaryAccountingModel.AccountMovements">
+              <MappingFragment StoreEntitySet="AccountMovements">
+                <ScalarProperty Name="CurrentCode" ColumnName="CurrentCode" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Debt" ColumnName="Debt" />
+                <ScalarProperty Name="Descript" ColumnName="Descript" />
+                <ScalarProperty Name="ProcessType" ColumnName="ProcessType" />
+                <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+                <ScalarProperty Name="MovementDate" ColumnName="MovementDate" />
+                <ScalarProperty Name="AccountMovementCode" ColumnName="AccountMovementCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
